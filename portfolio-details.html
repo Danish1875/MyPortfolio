@@ -26,6 +26,180 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <script>
+  const projectData = {
+      'hackerbot': {
+          title: 'HackerBot',
+          category: 'Web Application',
+          tech: 'React, Node.js, MongoDB',
+          date: '2024',
+          url: 'https://github.com/Danish1875/Hacker-Bot',
+          description: 'An AI-powered chatbot that helps developers with coding queries and debugging.',
+          features: [
+              'Natural Language Processing',
+              'Real-time code suggestions',
+              'Multi-language support',
+              'IDE integration'
+          ],
+          images: ['portfolio-1.jpg', 'portfolio-2.jpg', 'portfolio-3.jpg']
+      },
+      'voltzapp': {
+          title: 'VoltZapp',
+          category: 'Web Application',
+          tech: 'Vue.js, Firebase, Node.js',
+          date: '2024',
+          url: 'https://github.com/Danish1875/voltzapp',
+          description: 'Real-time energy consumption monitoring dashboard.',
+          features: [
+              'Real-time data visualization',
+              'Predictive analytics',
+              'Energy optimization suggestions',
+              'Mobile-responsive design'
+          ],
+          images: ['portfolio-2.jpg', 'portfolio-3.jpg', 'portfolio-4.jpg']
+      },
+      'spotify-clone': {
+          title: 'Spotify Clone',
+          category: 'Web Application',
+          tech: 'React, Node.js, MongoDB, Spotify API',
+          date: '2023',
+          url: 'https://github.com/Danish1875/spotify-clone-app',
+          description: 'A full-featured music streaming platform.',
+          features: [
+              'User authentication',
+              'Playlist management',
+              'Real-time music playback',
+              'Social features'
+          ],
+          images: ['portfolio-3.jpg', 'portfolio-4.jpg', 'portfolio-5.jpg']
+      },
+      'disease-prognosis': {
+          title: 'Disease Prognosis',
+          category: 'Machine Learning',
+          tech: 'Python, TensorFlow, scikit-learn',
+          date: '2023',
+          url: 'https://github.com/Danish1875/Disease_Prognosis',
+          description: 'ML-based disease prediction system using patient health data.',
+          features: [
+              'Predictive analytics',
+              'Data visualization',
+              'Risk assessment',
+              'Healthcare integration'
+          ],
+          images: ['portfolio-4.jpg', 'portfolio-5.jpg', 'portfolio-6.jpg']
+      },
+      'language-alchemist': {
+          title: 'The Language Alchemist',
+          category: 'Machine Learning',
+          tech: 'Python, PyTorch, NLTK',
+          date: '2023',
+          url: 'https://github.com/Danish1875/Comm-App',
+          description: 'Advanced NLP system for language processing and generation.',
+          features: [
+              'Text analysis',
+              'Sentiment analysis',
+              'Language translation',
+              'Content generation'
+          ],
+          images: ['portfolio-6.jpg', 'portfolio-1.jpg', 'portfolio-2.jpg']
+      },
+      'cloud-monitoring': {
+          title: 'Cloud Monitoring',
+          category: 'DevOps',
+          tech: 'Docker, Kubernetes, Prometheus',
+          date: '2023',
+          url: 'https://github.com/Danish1875/Cloud-Native-Monitoring-App-Devops-',
+          description: 'Cloud-native monitoring solution for containerized applications.',
+          features: [
+              'Real-time monitoring',
+              'Alert management',
+              'Resource optimization',
+              'Performance analytics'
+          ],
+          images: ['portfolio-5.jpg', 'portfolio-6.jpg', 'portfolio-1.jpg']
+      }
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+      try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const projectId = urlParams.get('project');
+          console.log('Project ID:', projectId); // Debug log
+
+          if (!projectId || !projectData[projectId]) {
+              console.error('Invalid project ID');
+              return;
+          }
+
+          const project = projectData[projectId];
+          
+          // Initialize Swiper
+          new Swiper('.portfolio-details-slider', {
+              speed: 400,
+              loop: true,
+              autoplay: {
+                  delay: 5000,
+                  disableOnInteraction: false
+              },
+              pagination: {
+                  el: '.swiper-pagination',
+                  type: 'bullets',
+                  clickable: true
+              }
+          });
+
+          // Update content
+          updateProjectContent(project);
+      } catch (error) {
+          console.error('Error:', error);
+      }
+  });
+
+  function updateProjectContent(project) {
+      // Update project info
+      const infoSection = document.querySelector('.portfolio-info');
+      if (infoSection) {
+          infoSection.innerHTML = `
+              <h3>Project information</h3>
+              <ul>
+                  <li><strong>Category</strong>: ${project.category}</li>
+                  <li><strong>Technologies</strong>: ${project.tech}</li>
+                  <li><strong>Project date</strong>: ${project.date}</li>
+                  <li><strong>Project URL</strong>: <a href="${project.url}" target="_blank">View Project</a></li>
+              </ul>
+          `;
+      }
+
+      // Update project description
+      const descSection = document.querySelector('.portfolio-description');
+      if (descSection) {
+          descSection.innerHTML = `
+              <h2>${project.title}</h2>
+              <p>${project.description}</p>
+              <h3>Key Features</h3>
+              <ul>
+                  ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+              </ul>
+          `;
+      }
+
+      // Update swiper
+      const swiperWrapper = document.querySelector('.swiper-wrapper');
+      if (swiperWrapper) {
+          swiperWrapper.innerHTML = project.images.map(img => `
+              <div class="swiper-slide">
+                  <img src="assets/img/portfolio/${img}" alt="">
+              </div>
+          `).join('');
+      }
+  }
+  </script>
+
 </head>
 
 <body>
@@ -74,19 +248,7 @@
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-1.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-2.jpg" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="assets/img/portfolio/portfolio-details-3.jpg" alt="">
-                </div>
-
+                <!-- Images will be dynamically inserted here -->
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -94,19 +256,10 @@
 
           <div class="col-lg-4">
             <div class="portfolio-info">
-              <h3>Project information</h3>
-              <ul>
-                <li><strong>Category</strong>: Web design</li>
-                <li><strong>Client</strong>: ASU Company</li>
-                <li><strong>Project date</strong>: 01 March, 2020</li>
-                <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
-              </ul>
+              <!-- Project info will be dynamically inserted here -->
             </div>
             <div class="portfolio-description">
-              <h2>This is an example of portfolio detail</h2>
-              <p>
-                danish ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
-              </p>
+              <!-- Project description will be dynamically inserted here -->
             </div>
           </div>
 
@@ -120,8 +273,8 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-      <h3>Laura Thomson</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <h3>Danish Haji Ameen</h3>
+      <p>Let's build the future together, one intuitive idea at a time. Always open to collaboration!</p>
       <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
