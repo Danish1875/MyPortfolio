@@ -199,6 +199,162 @@
   }
   </script>
 
+  <!-- Add this in the <head> section, after existing CSS links -->
+  <style>
+    /* Modern Typography */
+    .portfolio-details h2 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      background: linear-gradient(45deg, #32CD32, #004c00);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .portfolio-info h3 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeInLeft 0.6s ease forwards 0.3s;
+    }
+
+    /* Dynamic Image Container */
+    .portfolio-details-slider {
+      overflow: hidden;
+      /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); */
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards 0.2s;
+    }
+
+    .portfolio-details-slider img {
+      transition: transform 0.5s ease;
+    }
+
+    .portfolio-details-slider:hover img {
+      object-fit: contain;
+      transform: scale(1.02);
+    }
+
+    /* Info Cards */
+    .portfolio-info {
+      background: rgba(255, 255, 255, 0.98);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+      opacity: 0;
+      animation: fadeInRight 0.8s ease forwards 0.4s;
+    }
+
+    .portfolio-info:hover {
+      transform: translateY(-5px);
+    }
+
+    .portfolio-info ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    .portfolio-info ul li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      opacity: 0;
+      animation: fadeInLeft 0.5s ease forwards;
+      animation-delay: calc(0.5s + var(--item-index) * 0.1s);
+    }
+
+    /* Description Section */
+    .portfolio-description {
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards 0.6s;
+    }
+
+    .portfolio-description p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+      opacity: 0;
+      animation: typeWriter 1s steps(40) forwards 1s;
+    }
+
+    .portfolio-description ul li {
+      margin: 10px 0;
+      padding-left: 25px;
+      position: relative;
+      opacity: 0;
+      animation: fadeInLeft 0.5s ease forwards;
+      animation-delay: calc(1.2s + var(--item-index) * 0.1s);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes typeWriter {
+      from {
+        width: 0;
+        opacity: 0;
+      }
+      to {
+        width: 100%;
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .portfolio-details h2 {
+        font-size: 2rem;
+      }
+      
+      .portfolio-info, .portfolio-description {
+        margin: 1rem 0;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -227,11 +383,10 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfolio Details</h2>
+          <h2><b>Project Details</b></h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li>Portfolio Details</li>
+            <li><b>Details</b></li>
           </ol>
         </div>
 
@@ -247,7 +402,7 @@
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
-                <!-- Images will be dynamically inserted here -->
+                
               </div>
               <div class="swiper-pagination"></div>
             </div>
@@ -278,7 +433,6 @@
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
         <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
       <div class="copyright">
@@ -290,16 +444,36 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add animation delay for list items
+      document.querySelectorAll('.portfolio-info ul li').forEach((item, index) => {
+        item.style.setProperty('--item-index', index);
+      });
+      
+      document.querySelectorAll('.portfolio-description ul li').forEach((item, index) => {
+        item.style.setProperty('--item-index', index);
+      });
+
+      // Add animation delay for list items
+      document.querySelectorAll('.portfolio-info ul li').forEach((item, index) => {
+        item.style.setProperty('--item-index', index);
+      });
+      
+      document.querySelectorAll('.portfolio-description ul li').forEach((item, index) => {
+        item.style.setProperty('--item-index', index);
+      });
+    });
+  </script>
 
 </body>
 
