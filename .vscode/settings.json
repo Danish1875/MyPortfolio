@@ -1,0 +1,5 @@
+{
+    "github.copilot.chat.codesearch.enabled": true,
+    "github.copilot.chat.newWorkspaceCreation.enabled": true,
+    "chat.agent.maxRequests": 10
+}
